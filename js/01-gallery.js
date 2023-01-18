@@ -22,9 +22,9 @@ function createEl(el) {
     .join("");
 }
 galeryImg.insertAdjacentHTML("beforeend", imageItemsMarkup);
-galeryImg.addEventListener("click", openUrl);
+galeryImg.addEventListener("click", onOpenUrl);
 
-function openUrl(e) {
+function onOpenUrl(e) {
   e.preventDefault();
   if (e.target.nodeName !== "IMG") {
     return;
@@ -34,10 +34,12 @@ function openUrl(e) {
     <img src="${url}" width="800" height="600">
 `);
   instance.show();
-  window.addEventListener("keydown", (e) => {
-    if (e.code === "Escape") {
-      instance.close();
-      window.removeEventListener("keydown", window);
-    }
-  });
+  window.addEventListener("keydown", onclose);
+}
+
+function onclose(e) {
+  if (e.code === "Escape") {
+    instance.close();
+  }
+  window.removeEventListener("keydown", onclose);
 }
