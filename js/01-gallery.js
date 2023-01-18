@@ -37,6 +37,7 @@ function openUrl(e) {
   window.addEventListener("keydown", (e) => {
     if (e.code === "Escape") {
       instance.close();
+      window.removeEventListener("keydown", window);
     }
   });
 }
